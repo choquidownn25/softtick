@@ -1,0 +1,14 @@
+@if(mobileQuery.matches){
+<div class="horizontal-sidebar p-y-8 ">
+  <div class="container">
+    <div>
+      <div class="horizontal-navbar hstack align-items-center">
+        @for(item of navItems; track item){
+          <app-horizontal-nav-item [item]="item" class="parentBox {{ item.ddType }}">
+          </app-horizontal-nav-item>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+}

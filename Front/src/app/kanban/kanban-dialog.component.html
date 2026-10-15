@@ -1,0 +1,95 @@
+<mat-dialog-content class="mat-typography">
+  <div class="d-flex align-items-center justify-content-between m-b-16">
+    <h4 class="f-s-16 f-w-600">{{ action }} Task</h4>
+    <button
+      mat-icon-button
+      mat-dialog-close
+      class="d-flex justify-content-center"
+    >
+      <i-tabler name="x" class="icon-20 d-flex"></i-tabler>
+    </button>
+  </div>
+  <form #task="ngForm">
+    <div class="row">
+      <div class="col-12">
+        <mat-label class="f-w-600 m-b-8 d-block">Title</mat-label>
+        <mat-form-field appearance="outline" class="w-100">
+          <input
+            type="text"
+            matInput
+            required
+            id="heading"
+            name="heading"
+            [(ngModel)]="local_data.title"
+            placeholder="Title"
+          />
+        </mat-form-field>
+      </div>
+      @if(local_data.description) {
+      <div class="col-12">
+        <mat-label class="f-w-600 m-b-8 d-block">Description</mat-label>
+        <mat-form-field appearance="outline" class="w-100">
+          <input
+            type="text"
+            matInput
+            required
+            id="descrip"
+            name="descrip"
+            [(ngModel)]="local_data.description"
+            placeholder="Description"
+          />
+        </mat-form-field>
+      </div>
+      }
+
+      <div class="col-12">
+        <mat-label class="f-w-600 m-b-8 d-block">Property</mat-label>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select [(ngModel)]="local_data.taskProperty" name="taskProperty">
+            <mat-option value="Design">Design</mat-option>
+            <mat-option value="Mobile">Mobile</mat-option>
+            <mat-option value="UX Stage">UX Stage</mat-option>
+            <mat-option value="Research">Research</mat-option>
+            <mat-option value="Data Science">Data Science</mat-option>
+            <mat-option value="Branding">Branding</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      @if(local_data.imageUrl || action=='Add'){
+      <div class="col-12">
+        <mat-label class="f-w-600 m-b-8 d-block">Image URL</mat-label>
+        <mat-form-field appearance="outline" class="w-100">
+          <input
+            type="text"
+            matInput
+            id="imageUrl"
+            name="imageUrl"
+            [(ngModel)]="local_data.imageUrl"
+            placeholder="Image URL"
+          />
+        </mat-form-field>
+        <div class="row">
+          <div class="col-12">
+            <img
+              [src]="local_data.imageUrl"
+              alt="Task Image"
+              style="max-width: 100%"
+              class="rounded m-t-10"
+            />
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </form>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <button mat-flat-button (click)="doAction()" [disabled]="task.invalid">
+    <span>{{ action === "Edit" ? "Save" : "Add" }}</span>
+  </button>
+  <button mat-flat-button class="bg-error text-white" (click)="closeDialog()">
+    Cancel
+  </button>
+</div>

@@ -1,0 +1,39 @@
+@use "../variables" as *;
+
+.task-list-section {
+  display: flex;
+  gap: 24px;
+  flex-wrap: nowrap;
+}
+
+.task-list-container {
+  width: 252px;
+  flex-shrink: 0;
+}
+
+.connect-sorting {
+  padding: 20px;
+  border-radius: $border-radius;
+}
+
+.img-task {
+  cursor: grab;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: $border-radius;
+  box-shadow: var(--mat-sys-level1);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list {
+  padding: 0px 0px 20px 0px !important
+}

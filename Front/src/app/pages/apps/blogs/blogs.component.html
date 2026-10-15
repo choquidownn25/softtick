@@ -1,0 +1,110 @@
+<div class="row">
+  @for(blogPost of blogService.getBlog(); track blogPost.user) {
+  <!-- ----------------------------------------------------------------- -->
+  <!-- If Feature Blog is available -->
+  <!-- ----------------------------------------------------------------- -->
+  @if(blogPost.featuredPost) {
+  <div
+    class="col-12 col-lg-4 col-xl-8"
+    [class.col-lg-8]="blogPost.featuredPost"
+  >
+    <mat-card
+      class="cardWithShadow position-relative card-hover featured-card overflow-hidden cursor-pointer"
+      (click)="selectBlog(blogPost.title)"
+    >
+      <img
+        mat-card-image
+        src="{{ blogPost.imgSrc }}"
+        alt="Photo of a Shiba Inu"
+      />
+      <div
+        class="featured-overlay p-24 d-flex flex-col align-items-end justify-content-start"
+      >
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <img src="{{ blogPost.user }}" class="rounded-circle" width="40" />
+          <span
+            class="f-s-12 f-w-600 bg-primary text-white rounded p-x-8 p-y-4"
+            >{{ blogPost.category }}</span
+          >
+        </div>
+        <div class="m-t-auto w-100">
+          <mat-card-title class="f-s-24 text-white">{{
+            blogPost.title
+          }}</mat-card-title>
+          <div
+            class="d-flex align-items-center justify-content-center m-t-24 text-white"
+          >
+            <div class="d-flex align-items-center gap-12">
+              <span class="f-s-14 d-flex align-items-center gap-4"
+                ><i-tabler name="eye" class="icon-18"></i-tabler
+                >{{ blogPost.views }}</span
+              >
+              <span class="f-s-14 d-flex align-items-center gap-4"
+                ><i-tabler name="message-2" class="icon-18"></i-tabler
+                >{{ blogPost.comments }}</span
+              >
+            </div>
+            <span class="m-l-auto f-s-14 d-flex align-items-center gap-4">
+              <i-tabler name="point" class="icon-14"></i-tabler>
+              {{ blogPost.date }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  }
+
+  <!-- ----------------------------------------------------------------- -->
+  <!-- Else Simple Blog is available -->
+  <!-- ----------------------------------------------------------------- -->
+  @else {
+  <div class="col-sm-6 col-lg-4">
+    <mat-card
+      class="cardWithShadow position-relative card-hover cursor-pointer"
+      (click)="selectBlog(blogPost.title)"
+    >
+      <img
+        mat-card-image
+        src="{{ blogPost.imgSrc }}"
+        alt="Photo of a Shiba Inu"
+      />
+      <div
+        class="card-overlay h-100 d-flex p-16 p-y-0 align-items-end justify-content-between"
+      >
+        <span class="f-s-12 m-y-16 f-w-600 bg-white rounded-pill p-x-8">{{
+          blogPost.category
+        }}</span>
+        <span class="f-s-12 f-w-600 m-y-16 bg-white rounded-pill p-x-8">{{
+          blogPost.time
+        }}</span>
+      </div>
+
+      <mat-card-content>
+        <div class="user-category">
+          <img src="{{ blogPost.user }}" class="rounded-circle" width="40" />
+        </div>
+        <mat-card-title class="mat-headline-6 m-t-15">{{
+          blogPost.title
+        }}</mat-card-title>
+        <div class="d-flex align-items-center justify-content-center m-t-24">
+          <div class="d-flex align-items-center gap-12">
+            <span class="f-s-14 d-flex align-items-center gap-4"
+              ><i-tabler name="eye" class="icon-18"></i-tabler
+              >{{ blogPost.views }}</span
+            >
+            <span class="f-s-14 d-flex align-items-center gap-4"
+              ><i-tabler name="message-2" class="icon-18"></i-tabler
+              >{{ blogPost.comments }}</span
+            >
+          </div>
+          <span class="m-l-auto f-s-14 d-flex align-items-center gap-4">
+            <i-tabler name="point" class="icon-14"></i-tabler>
+            {{ blogPost.date }}
+          </span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  } }
+</div>

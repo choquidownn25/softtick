@@ -1,0 +1,25 @@
+<mat-nav-list class="text-center p-16 sidebar-tooltip">
+  <button
+    mat-icon-button
+    color="inherit"
+    (click)="toggleCollapsed.emit()"
+    class="m-b-16"
+  >
+    <i class="iconify f-s-24" data-icon="solar:hamburger-menu-line-duotone"></i>
+  </button>
+  @for(item of getFlattenedItems(menuItems); track item) {
+  <mat-list-item
+    [class.bg-light-primary]="item.id === selectedMenu"
+    [class.text-primary]="item.id === selectedMenu"
+    class="menu-list-item p-0 m-b-8"
+    (click)="selectIcon(item.id)"
+    matTooltip={{item.title}}
+    matTooltipPosition="after"
+  >
+    <span
+      class="iconify f-s-24 d-flex justify-content-center m-auto"
+      [attr.data-icon]="item.iconName"
+    ></span>
+  </mat-list-item>
+  }
+</mat-nav-list>
